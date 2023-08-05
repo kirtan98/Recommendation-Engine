@@ -43,4 +43,4 @@ for i in brand:
       all_phones.append(phone)
 
 df = pd.DataFrame(all_phones)
-df.to_csv('/content/drive/MyDrive/DA DS/flipkart_mobile_1.csv')
+df.to_csv('/content/drive/MyDrive/DA DS/flipkart_mobile.csv')
