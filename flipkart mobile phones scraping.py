@@ -4,7 +4,7 @@ import pandas as pd
 
 url = 'https://www.flipkart.com/search?q=mobiles&as=on&as-show=on&otracker=AS_Query_HistoryAutoSuggest_3_0_na_na_na&otracker1=AS_Query_HistoryAutoSuggest_3_0_na_na_na&as-pos=3&as-type=HISTORY&suggestionId=mobiles&requestId=b7266836-d46d-41bb-bdc5-e196b56f66ce&p%5B%5D=facets.brand%255B%255D%3D{}&page={}'
 
-brand = ['SAMSUNG', 'APPLE', 'realme', 'POCO', 'Infinix', 'OPPO', 'vivo', 'REDMI', 'Nothing', 'MOTOROLA',
+brands = ['SAMSUNG', 'APPLE', 'realme', 'POCO', 'Infinix', 'OPPO', 'vivo', 'REDMI', 'Nothing', 'MOTOROLA',
          'Mi', 'LAVA', 'Nokia', 'KARBONN', 'I Kall', 'OnePlus', 'Kechaoda', 'itel', 'ASUS', 'Tecno', 'IQOO',
          'Snexian', 'MTR', 'Micromax', 'Honor', 'Lenovo', 'Cellecor', 'Panasonic', 'BlackZone', 'LG', 'IAIR',
          'ANGAGE', 'GIONEE', 'SAREGAMA', 'Tork', 'Intex', 'GFive', 'LYF', 'Lvix', 'SONY', 'HTC', 'XOLO', 'BlackBear',
@@ -20,9 +20,9 @@ brand = ['SAMSUNG', 'APPLE', 'realme', 'POCO', 'Infinix', 'OPPO', 'vivo', 'REDMI
          'Kult', 'Krex', 'Jalsa', 'Heemax', 'HP', 'Geotel', 'Gamma', 'E&L', 'E L', 'Doogee', 'Do', 'DELL', 'Cospex', 'Comio', 'Chilli', 'Benco', 'AXXA']
 
 all_phones = []
-for i in brand:
+for brand in brands:
   for j in range(1,44):
-    print('brand',i, 'pageno', j)
+    print('brand',brand, 'pageno', j)
     page = requests.get(url.format(i,j), headers={"Accept-Language": "en-US"})
     soup = bs4.BeautifulSoup(page.text, "html.parser")
     ph_div = soup.findAll('div', class_='_2kHMtA')
@@ -38,9 +38,9 @@ for i in brand:
       phone['OriginalPrice'] = ph.find('div', class_='_3I9_wc _27UcVY').text if ph.find('div', class_='_3I9_wc _27UcVY') else ''
       phone['Discount'] = ph.find('div', class_='_3Ay6Sb').text if ph.find('div', class_='_3Ay6Sb') else ''
       phone['Deals'] = [ph.text for ph in ph.find_all('div', class_='_2Tpdn3 _18hQoS')] if ph.find('div', class_='_4rR01T') else ''
-      phone['availability'] = ph.find('span', class_='_192laR').text if ph.find('span', class_='_192laR') else 'Available'
+      phone['availability'] = ph.find('span', class_='_192laR').text if ph.find('span', class_='_192laR') else ''
       phone['comingsoon'] = ph.find('span', class_='u05wbu').text if ph.find('span', class_='u05wbu') else ''
       all_phones.append(phone)
 
 df = pd.DataFrame(all_phones)
-df.to_csv('/content/drive/MyDrive/DA DS/flipkart_mobile.csv')
+df.to_csv('/content/ml_project/flipkart_mobile.csv')
