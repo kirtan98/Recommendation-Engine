@@ -544,8 +544,6 @@ df['rplc_rep_ser_Warranty'] = np.where(df['Specification'].str.contains(r'replac
 
 df.describe(include='all')
 
-df.columns
-
 df.drop(['PhoneName', 'Specification', 'Num_Rating_review', 'Deals', 'comingsoon', 'C_ROM', 'RAM_ROM_Exp','Warranty'], axis=1, inplace=True)
 
 df.columns
@@ -557,4 +555,4 @@ new_df = df[['Brand', 'PhoneModel', 'PhoneColor', 'NetworkType', 'ProductRating'
 
 new_df.describe(include='all')
 
-new_df.to_csv(r'/content/drive/MyDrive/DA DS/Modeled_mobile.csv', index=False)
+new_df.to_csv(r'/content/drive/MyDrive/DA DS/Preprocessed_Mobile_Data.csv', index=False)
