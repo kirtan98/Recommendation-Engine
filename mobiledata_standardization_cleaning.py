@@ -4,7 +4,7 @@ import numpy as np
 import re
 
 # Read CSV file and check shape
-df = pd.read_csv(r"/content/drive/MyDrive/DA DS/flipkart_mobile.csv")
+df = pd.read_csv(r"/content/ml_project/flipkart_mobile.csv")
 df.drop('Unnamed: 0', axis=1, inplace=True)
 df.shape
 
@@ -555,4 +555,4 @@ new_df = df[['Brand', 'PhoneModel', 'PhoneColor', 'NetworkType', 'ProductRating'
 
 new_df.describe(include='all')
 
-new_df.to_csv(r'/content/drive/MyDrive/DA DS/Preprocessed_Mobile_Data.csv', index=False)
+new_df.to_csv(r'/content/ml_project/Preprocessed_Mobile_Data.csv', index=False)
